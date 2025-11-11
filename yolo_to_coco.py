@@ -1,5 +1,6 @@
 import os
 import json
+import argparse
 from PIL import Image
 
 def convert_yolo_to_coco(yolo_images_path, yolo_labels_path, output_coco_path, class_names):
@@ -77,3 +78,33 @@ def convert_yolo_to_coco(yolo_images_path, yolo_labels_path, output_coco_path, c
 
     with open(output_coco_path, 'w') as f:
         json.dump(coco_data, f, indent=4)
+
+def main():
+    parser = argparse.ArgumentParser(description='Convert YOLO format annotations to COCO format')
+    parser.add_argument('--images_path', required=True, help='Path to YOLO images directory')
+    parser.add_argument('--labels_path', required=True, help='Path to YOLO labels directory')
+    parser.add_argument('--output_path', required=True, help='Output path for COCO JSON file')
+    parser.add_argument('--class_names', required=True, nargs='+', help='List of class names')
+    
+    args = parser.parse_args()
+    
+    convert_yolo_to_coco(
+        yolo_images_path=args.images_path,
+        yolo_labels_path=args.labels_path,
+        output_coco_path=args.output_path,
+        class_names=args.class_names
+    )
+    
+    print(f"Conversion completed! COCO annotations saved to: {args.output_path}")
+
+if __name__ == "__main__":
+    main()
+
+## Basic usage
+#python yolo_to_coco.py --images_path "dataset/train/" --labels_path "labels/train/" --output_path "dataset/train/_annotations.coco.json" --class_names "object"
+
+## With multiple classes
+#python yolo_to_coco.py --images_path "dataset/train/" --labels_path "labels/train/" --output_path "dataset/train/_annotations.coco.json" --class_names "person" "car" "bicycle"
+
+## Or using the example from your code
+#python yolo_to_coco.py --images_path dataset/train/ --labels_path labels/train/ --output_path dataset/train/_annotations.coco.json --class_names object
