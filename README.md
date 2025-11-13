@@ -16,6 +16,16 @@ cd duane-rf-detr
 
 stage_data.sh     # stage the yolo datasets (generated elsewhere)
 
+useful to move files around:
+
+instead of cp, use rsync -a /some/path/to/src/ /other/path/to/dest/ --progress
+
+
 yolo_to_coco.py   # set up coco dataset from yolo dataset
 
+
+example
+
+     python yolo_to_coco.py --images_path "datasets/train/train" --labels_path "datasets/savedir/labels/train" --output_path "datasets/train/_annotations.coco.json" --class_names "object"
+     
 duane-rfdetr.py    # train the model
