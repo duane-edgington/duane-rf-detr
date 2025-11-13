@@ -28,14 +28,14 @@ mkdir $PWD/datasets/val/labels/
 
 
 #move the data to the expected directories
-cp -r "$PWD/datasets/savedir/images/train/" "$PWD/datasets/train/images/"
-cp -r "$PWD/datasets/savedir/labels/train/" "$PWD/datasets/train/labels/"
+rsync -a "$PWD/datasets/savedir/images/train/" "$PWD/datasets/train/"
+#cp -r "$PWD/datasets/savedir/labels/train/" "$PWD/datasets/train/labels/"
 
-cp -r "$PWD/datasets/savedir/images/test/" "$PWD/datasets/test/images/"
-cp -r "$PWD/datasets/savedir/labels/test/" "$PWD/datasets/test/labels/"
+rsync -a "$PWD/datasets/savedir/images/test/" "$PWD/datasets/test/"
+#cp -r "$PWD/datasets/savedir/labels/test/" "$PWD/datasets/test/labels/"
 
-cp -r "$PWD/datasets/savedir/images/val/" "$PWD/datasets/val/images/"
-cp -r "$PWD/datasets/savedir/labels/val/" "$PWD/datasets/val/labels/"
+rsync -a "$PWD/datasets/savedir/images/val/" "$PWD/datasets/valid/"
+#cp -r "$PWD/datasets/savedir/labels/val/" "$PWD/datasets/valid/labels"
 
 ls $PMD/datasets/
 

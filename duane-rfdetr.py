@@ -75,12 +75,16 @@ print("API Key loaded successfully")
 from roboflow import download_dataset
 
 rf = Roboflow(api_key=myapi_key)
-project = rf.workspace().project("basketball-players-fy4c2")
-dataset = download_dataset("https://universe.roboflow.com/roboflow-jvuqo/basketball-player-detection-2/13", "coco")
+#project = rf.workspace().project("basketball-players-fy4c2")
+#dataset = download_dataset("https://universe.roboflow.com/roboflow-jvuqo/basketball-player-detection-2/13", "coco")
+
+dataset = "/home/duane/rf-detr/duane-rf-detr/datasets"
 
 
 model = RFDETRLarge()
 
 
-model.train(dataset_dir=dataset.location, epochs=10, batch_size=16, grad_accum_steps=1)
+
+model.train(dataset_dir=dataset, epochs=20, batch_size=16, grad_accum_steps=1)
+
 print("Training results saved in director 'output'")
