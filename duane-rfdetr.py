@@ -87,4 +87,4 @@ model = RFDETRLarge()
 
 model.train(dataset_dir=dataset, epochs=20, batch_size=16, grad_accum_steps=1)
 
-print("Training results saved in director 'output'")
+print("Training results saved in directory 'output'")
