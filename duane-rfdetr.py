@@ -3,7 +3,7 @@ import supervision as sv
 
 from PIL import Image
 
-from rfdetr import RFDETRMedium
+#from rfdetr import RFDETRMedium
 from rfdetr import RFDETRLarge
 from rfdetr.util.coco_classes import COCO_CLASSES
 
@@ -12,8 +12,8 @@ from roboflow import Roboflow
 # inference an image that is in the local directory
 image = Image.open("dog-2.jpeg")
 
-model = RFDETRMedium(resolution=640)
-model = RFDETRLarge(resolution=728)
+#model = RFDETRMedium(resolution=576)
+model = RFDETRLarge(resolution=704)  #This is the resolution of RFDETRLarge. Must be divisible by 32
 #model.optimize_for_inference() # this threw an error in my python 3.13, pytorch environment
 
 detections = model.predict(image, threshold=0.2)
@@ -57,7 +57,7 @@ import os
 import sys
 
 def get_api_key():
-    api_key = os.environ.get('API_KEY')
+    api_key = os.environ.get('ROBOFLOW_API_KEY')
 
     if not api_key:
         print("Error: API_KEY environment variable is not set")
@@ -85,6 +85,7 @@ model = RFDETRLarge()
 
 
 
-model.train(dataset_dir=dataset, epochs=20, batch_size=16, grad_accum_steps=1)
+#model.train(dataset_dir=dataset, epochs=20, batch_size=16, grad_accum_steps=1)  # full train takes about 3 days
+model.train(dataset_dir=dataset, epochs=2, batch_size=16, grad_accum_steps=1)  # test train
 
 print("Training results saved in directory 'output'")
