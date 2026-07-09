@@ -1,5 +1,6 @@
 rfdetr
 supervision
 roboflow
+rfdetr[train,loggers]
 inference
-"rfdetr[train,loggers]"
+
