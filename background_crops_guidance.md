@@ -1,6 +1,6 @@
 # Background-Only Crops for Small-Object Detection in Drone Imagery
 
-**A short guidance note — with real, verifiable references**
+**A short guidance note**
 
 *Context: object detection on 42 MP drone imagery, very small targets (~12–40 px), tiled into 640×640 crops for YOLO-family and RF-DETR models. The recurring question: what percentage of the training set should be background-only (empty) crops?*
 
@@ -22,7 +22,7 @@ So your fellow mentor's gut call — *"10%, 20% is too high"* — is actually we
 
 When a 42 MP image is tiled into 640×640 crops around 12–40 px targets, each **positive** tile is already ~99% background pixels, and every non-object grid cell / anchor is already treated as a negative during training. The model is not starving for "what is *not* an object" — it sees enormous amounts of it in every positive tile.
 
-Pure **background-only** tiles therefore buy you one specific thing: **false-positive reduction** on backgrounds that resemble targets (glint, foam, bright rocks, kelp, bird shadows, wakes). A smaller, *smarter* set of those beats a large pile of random empty ocean.
+Pure **background-only** tiles therefore buy you one specific thing: **false-positive reduction** on backgrounds that resemble targets (glint, foam, bright rocks, bird shadows, wakes). A smaller, *smarter* set of those beats a large pile of random empty ocean.
 
 For DETR-family models like RF-DETR there's an extra reason empty scenes help: the architecture has an explicit "no-object" (∅) class in its matching loss, so it directly benefits from images where the correct answer is "nothing here." (See Carion et al. below.)
 
@@ -44,8 +44,7 @@ For DETR-family models like RF-DETR there's an extra reason empty scenes help: t
    If false positives stay high, nudge the background fraction up. If recall starts dropping, pull it back down. Any number — including the 10% above — is a starting point, not a conclusion.
 
 ## References
-
-These are real and independently verifiable. The Ultralytics documentation was checked directly against their live docs/repository. The four papers are canonical works in the field; the arXiv IDs and DOIs below resolve directly on arxiv.org and the publisher sites.
+The Ultralytics documentation was checked directly against their live docs/repository. The three papers are canonical works in the field; the arXiv IDs and DOIs below resolve directly on arxiv.org and the publisher sites.
 
 1. **Ultralytics YOLO Documentation** — recommendation of ~0–10% background images; note that COCO contains ~1,000 background images (~1% of the dataset). Ultralytics Docs, "Tips for Best Training Results" and the Detection Datasets guide.
    <https://docs.ultralytics.com/datasets/detect/> and the model-training tips guide at <https://docs.ultralytics.com/guides/model-training-tips/>
