@@ -16,7 +16,7 @@ Two things are true at once here, and it helps to separate them:
 
 2. **The most authoritative concrete number comes from the framework authors.** Ultralytics (who maintain YOLO) recommend **roughly 0–10% background images**, and note that COCO — the reference dataset — contains about **1,000 background images, ~1% of the total**. That is the closest thing to a "source" for a percentage, and it is *lower* than the 20–30% figure floating around online.
 
-So your fellow mentor's gut call — *"10%, 20% is too high"* — is actually well aligned with the framework authors' own guidance. Her instinct matches the documented recommendation.
+So your mentor's gut call — *"10%, 20% is too high"* — is actually well aligned with the framework authors' own guidance. Her instinct matches the documented recommendation.
 
 ## Why the lower number makes sense for this problem
 
