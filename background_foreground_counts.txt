@@ -1,0 +1,4 @@
+20%: 93425 positive, 23356 negative
+10%: 93425 positive, 10380 negative
+5%: 93425 positive, 4917 negative
+0%: 93425 positive, 0 negative
